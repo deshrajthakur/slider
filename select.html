@@ -1,0 +1,127 @@
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
+<script>
+ $(document).ready(function(){
+        $('.select_option_cs h3').click(function(){
+          $('.select_option_cs ul').slideToggle();
+        });
+
+
+        $('.select_option_cs ul li').click(function(){
+          if($('.select_option_cs ul li').hasClass('active')){
+            $('.select_option_cs ul li').removeClass('active');
+            $(this).addClass('active'); 
+          } else{ 
+            $(this).addClass('active');
+          }
+          $(this).parent('ul').slideUp();
+          var days = $(this).find('p').text();
+          $('.select_option_cs h3').text(days);
+        });
+      });
+      
+      
+      $(".select_option_cs ul li").click(function (e) {
+        e.preventDefault();
+        $("#day_start").val($(this).find('p').attr("class"));
+
+        var options = $("#day_start option");
+        var activeClass = $(this).find('p').attr("class");
+
+        options.each(function(i,e){
+
+          var t = $(this);
+
+          if(t.val() == activeClass){
+
+            t.show();
+          }else{
+            t.hide();   
+          }
+
+        })
+
+      });
+	  </script>
+<style>
+.select_option_cs{ margin:0px; padding:0px;width: 110px; position:relative; display:block;}
+.select_option_cs h3{    
+  padding: 0px 0px 0 0;
+  margin: 0 0; 
+  border: solid 0px #ced6e7;
+  font-size: 18px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 20px;
+  letter-spacing: normal;
+  text-align: left;
+  color: #002265; 
+  z-index: 99;
+  background: none;
+  position:relative;
+  cursor:pointer;
+} 
+.select_option_cs h3:after {
+  width: 15px;
+  height: 10px;
+  position: absolute;
+  top: 7px;
+  right: 20px;
+  content: "";
+  z-index: 1;
+  background: url(https://cdn.shopify.com/s/files/1/1845/0211/files/arrow_img.jpg?9421);
+  background-repeat: no-repeat;
+}
+.select_option_cs ul {
+    margin: 0px; 
+    list-style: none;
+    display: none;
+    position: absolute;
+    top: 30px;
+    left: -5px;
+    background: #fff;
+    padding: 10px;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    border: 1px solid #f3f3f3;
+}
+.select_option_cs ul li {
+  cursor:pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0px;
+  padding: 0px;
+}
+.select_option_cs li.active span{opacity:1;}
+.select_option_cs li:hover span{opacity:1;}
+.select_option_cs li span{ display:inline-block;opacity:0; margin:0 7px 0 0;}
+.select_option_cs p{
+  font-size: 18px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #002265;
+}
+</style>	  
+	  
+	   <div class="select_box" style="visibility: hidden; opacity:0;">
+            <select id="day_start" name="day_start" />     
+            <option value="30 days">30 days </option>       
+            <option value="45 days">45 days</option>   
+            <option value="60 days">60 days</option>       
+            <option value="90 days">90 days</option>    
+            </select>
+          </div>
+          <div class="select_option_cs"> 
+            <h3>30 days</h3>
+            <ul>
+              <li class="active"><span>✔</span><p class="30 days">30 days</p></li>
+              <li><span>✔</span><p  class="45 days">45 days</p></li>
+              <li><span>✔</span><p  class="60 days">60 days</p></li>
+              <li><span>✔</span><p class="90 days">90 days</p></li>
+            </ul> 
+          </div>
